@@ -1,0 +1,11 @@
+.auction_index {
+  background-color: #eee; }
+  .auction_index .title {
+    line-height: 50px;
+    background-color: #fff;
+    font-size: 20px;
+    font-weight: 500;
+    font-style: normal;
+    font-stretch: normal;
+    color: #333333;
+    padding-left: 10px; }

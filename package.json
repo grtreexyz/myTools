@@ -1,0 +1,32 @@
+{
+  "name": "myTools",
+  "version": "0.0.1",
+  "description": "我的工具箱",
+  "main": "gulpfile.js",
+  "dependencies": {
+    "gulp": "^3.9.1"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-clean": "^0.3.2",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^2.3.2",
+    "gulp-uglify": "^2.0.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/grtreexyz/myTools.git"
+  },
+  "keywords": [
+    "工具"
+  ],
+  "author": "栾树崇",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/grtreexyz/myTools/issues"
+  },
+  "homepage": "https://github.com/grtreexyz/myTools#readme"
+}
