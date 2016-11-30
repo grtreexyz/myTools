@@ -37,7 +37,7 @@ gulp.task('sass', function () {
 
 //压缩js
 gulp.task("minifyjs", function () {
-        gulp.src('./source/**/*.js')  //需要操作的文件
+        gulp.src(['./source/**/*.js', '!./source/**/*.min.js'])  //需要操作的文件
         //.pipe(sourcemaps.init())
         //.pipe(gulp.dest('./dist/'))       //输出到文件夹
         .pipe(uglify())                          //压缩
@@ -48,13 +48,13 @@ gulp.task("minifyjs", function () {
 
 //监视
 gulp.task('watch', function () {
-    var watchersass = gulp.watch('./Content/**/*.scss');
+    var watchersass = gulp.watch('./source/**/*.scss');
     watchersass.on('change', function (event) {
         gulp.start('sass');
         console.log('File ' + event.path + ' was ' + event.type + ', running task sass');
     });
 
-    var watcherjs = gulp.watch('./Content/**/*.js');
+    var watcherjs = gulp.watch('./source/**/*.js');
     watcherjs.on('change', function (event) {
         gulp.start('minifyjs');
         console.log('File ' + event.path + ' was ' + event.type + ', running task minifyjs');
