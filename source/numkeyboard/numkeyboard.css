@@ -3,69 +3,67 @@
   bottom: 0;
   left: 0;
   width: 100%; }
-
-.nk-info {
-  padding: 20px;
-  background-color: #f8f8f8; }
-  .nk-info .nk-close {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    font-size: 20px; }
-  .nk-info .nk-title {
-    line-height: 40px;
-    font-size: 16px;
-    font-weight: 500;
-    font-style: normal;
-    font-stretch: normal;
-    color: #333333; }
-  .nk-info .nk-input {
-    height: 50px;
-    line-height: 50px;
-    margin: 20px 0;
-    background-color: #ffffff; }
-    .nk-info .nk-input span {
-      line-height: 50px;
-      float: left;
+  #nk-fixeddialog .nk-info {
+    padding: 20px;
+    background-color: #f8f8f8; }
+    #nk-fixeddialog .nk-info .nk-close {
+      position: absolute;
+      top: 10px;
+      right: 10px;
       font-size: 20px; }
-    .nk-info .nk-input .nk-cursor {
-      margin-left: -4px;
-      font-size: 24px; }
-  .nk-info .nk-btn {
-    height: 44px;
-    background-color: #3c948b;
-    font-size: 20px;
-    font-weight: 500;
-    font-style: normal;
-    font-stretch: normal;
-    text-align: center;
-    color: #ffffff;
-    line-height: 44px; }
-
-.numkeyboard {
-  width: 100%;
-  height: 204; }
-  .numkeyboard div {
+    #nk-fixeddialog .nk-info .nk-title {
+      line-height: 40px;
+      font-size: 16px;
+      font-weight: 500;
+      font-style: normal;
+      font-stretch: normal;
+      color: #333333; }
+    #nk-fixeddialog .nk-info .nk-input {
+      height: 50px;
+      line-height: 50px;
+      margin: 20px 0;
+      background-color: #ffffff; }
+      #nk-fixeddialog .nk-info .nk-input span {
+        line-height: 50px;
+        float: left;
+        font-size: 20px; }
+      #nk-fixeddialog .nk-info .nk-input .nk-cursor {
+        margin-left: -4px;
+        font-size: 24px; }
+    #nk-fixeddialog .nk-info .nk-btn {
+      height: 44px;
+      background-color: #3c948b;
+      font-size: 20px;
+      font-weight: 500;
+      font-style: normal;
+      font-stretch: normal;
+      text-align: center;
+      color: #ffffff;
+      line-height: 44px; }
+  #nk-fixeddialog .numkeyboard {
     width: 100%;
-    height: 50px;
-    border-top: 1px solid #eee; }
-  .numkeyboard button {
-    width: 33.2%;
-    height: 50px;
-    float: left;
-    border: 0;
-    padding: 0;
-    margin: 0;
-    outline: none;
-    background-color: #fff;
-    font-size: 24px;
-    font-weight: 500;
-    font-style: normal;
-    font-stretch: normal;
-    text-align: center;
-    color: #000000; }
-    .numkeyboard button:nth-child(2) {
-      border-left: 1px solid #eee;
-      border-right: 1px solid #eee;
-      width: 33.6%;
-      box-sizing: border-box; }
+    height: 204; }
+    #nk-fixeddialog .numkeyboard div {
+      width: 100%;
+      height: 50px;
+      border-top: 1px solid #eee; }
+    #nk-fixeddialog .numkeyboard button {
+      width: 33.2%;
+      height: 50px;
+      float: left;
+      border: 0;
+      padding: 0;
+      margin: 0;
+      outline: none;
+      background-color: #fff;
+      font-size: 24px;
+      font-weight: 500;
+      font-style: normal;
+      font-stretch: normal;
+      text-align: center;
+      color: #000000; }
+      #nk-fixeddialog .numkeyboard button:nth-child(2) {
+        border-left: 1px solid #eee;
+        border-right: 1px solid #eee;
+        width: 33.6%;
+        box-sizing: border-box; }

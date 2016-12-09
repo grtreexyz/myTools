@@ -7,7 +7,7 @@ var rename = require("gulp-rename");
 //var _msbuild = require('msbuild');
 var argv = require('yargs').argv;
 var clean = require('gulp-clean');
-//var sourcemaps = require('gulp-sourcemaps');
+var sourcemaps = require('gulp-sourcemaps');
 
 //说明
 gulp.task('help', function () {
@@ -38,11 +38,10 @@ gulp.task('sass', function () {
 //压缩js
 gulp.task("minifyjs", function () {
         gulp.src(['./source/**/*.js', '!./source/**/*.min.js'])  //需要操作的文件
-        //.pipe(sourcemaps.init())
-        //.pipe(gulp.dest('./dist/'))       //输出到文件夹
+        .pipe(sourcemaps.init())
         .pipe(uglify())                          //压缩
         .pipe(rename({ suffix: '.min' }))        //rename压缩后的文件名
-        //.pipe(sourcemaps.write('../map/script/'))       //sourcemaps
+        .pipe(sourcemaps.write('../map/'))       //sourcemaps
         .pipe(gulp.dest('./source/'));      //输出
 });
 
