@@ -1,0 +1,749 @@
+﻿
+//////////////////////////
+///兼容性及一些方便处理///
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//transtion,IE10+
+//////////////////////////
+
+//-ms-perspective,IE10+
+@mixin perspective($value) {
+    -ms-perspective: $value;
+    -webkit-perspective: $value;
+    -moz-perspective: $value;
+    perspective: $value;
+}
+@mixin perspective-origin($x) {
+    -ms-perspective-origin: $x;
+    -webkit-perspective-origin: $x;
+    -moz-perspective-origin: $x;
+    perspective-origin: $x;
+}
+//-ms-transform,IE9+
+@mixin transform($transforms) {
+    -moz-transform: $transforms;
+    -o-transform: $transforms;
+    -ms-transform: $transforms;
+    -webkit-transform: $transforms;
+    transform: $transforms;
+}
+@mixin transform-origin ($origin) {
+    moz-transform-origin: $origin;
+    -o-transform-origin: $origin;
+    -ms-transform-origin: $origin;
+    -webkit-transform-origin: $origin;
+    transform-origin: $origin;
+}
+@mixin rotate ($deg) {
+    @include transform(rotate(#{$deg}deg));
+}
+@mixin scale($scale) {
+    @include transform(scale($scale));
+}
+@mixin translate ($x, $y) {
+    @include transform(translate($x, $y));
+}
+@mixin translateX ($x) {
+    @include transform(translateX($x));
+}
+@mixin translateY ($x) {
+    @include transform(translateY($x));
+}
+@mixin skew ($x, $y) {
+    @include transform(skew(#{$x}deg, #{$y}deg));
+}
+
+//calc,IE9+
+@mixin calc($name, $e) {
+    #{$name}: -moz-calc(#{$e});
+    #{$name}: -webkit-calc(#{$e});
+    #{$name}: calc(#{$e});
+}
+//-ms-user-select,IE10-11
+//onselectstart="return false;",IE6-9
+//unselectable="on",Opera12.5-
+@mixin user-select($none) {
+    -webkit-touch-callout: $none;
+    -webkit-user-select: $none;
+    -khtml-user-select: $none;
+    -moz-user-select: $none;
+    -ms-user-select: $none;
+    user-select: $none;
+}
+//-ms-,IE10-11
+@mixin palcehold-color($color) {
+    &::-webkit-input-placeholder {
+        color: $color;
+    }
+    &:-moz-placeholder {
+        color: $color;
+    }
+    &::-moz-placeholder {
+        color: $color;
+    }
+    &:-ms-input-placeholder {
+        color: $color;
+    }
+}
+
+@mixin tbrl-writing-mode {
+    -webkit-writing-mode: vertical-rl;
+    writing-mode: tb-rl;
+    writing-mode: vertical-rl;
+}
+@mixin tblr-writing-mode {
+    -webkit-writing-mode: vertical-lr;
+    writing-mode: tb-lr;
+    writing-mode: vertical-lr;
+}
+@mixin rltb-writing-mode {
+    direction:rtl;
+    unicode-bidi:bidi-override;
+}
+//弹性盒子
+//-ms-flexbox,IE10-11
+@mixin display-flex {
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+}
+
+@mixin item-flex($val...) {
+    -moz-box-flex: $val;
+    -webkit-flex: $val;
+    -webkit-box-flex: $val;
+    -ms-flex: $val;
+    -ms-box-flex: $val;
+    flex: $val;
+}
+
+@mixin display-inline-flex {
+    display: inline-box;
+    display: inline-flex;
+    display: inline-flexbox;
+}
+
+@mixin justify-content($val) {
+    -webkit-justify-content: $val;
+    -moz-justify-content: $val;
+    -ms-justify-content: $val;
+    -o-justify-content: $val;
+    -webkit-box-pack: $val;
+    justify-content: $val;
+}
+@mixin algin-items($val){
+    -webkit-box-align:$val;
+    -moz-box-align:$val;
+    -ms-box-align:$val;
+    @if $val==start {
+        -webkit-align-items:flex-#{$val};
+        align-items:flex-#{$val};        
+    }@else{
+        @if $val==end {
+            -webkit-align-items:flex-#{$val};
+            align-items:flex-#{$val};        
+        }@else{
+            -webkit-align-items:$val;
+            align-items:$val;        
+        }     
+    }
+}
+
+
+//////////////////////////
+///以下是动画相关///
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+@mixin keyframes($animation-name) {
+    @-webkit-keyframes #{$animation-name} {
+        @content;
+    }
+    @-moz-keyframes #{$animation-name} {
+        @content;
+    }
+    @keyframes #{$animation-name} {
+        @content;
+    }
+}
+//IE10+,-webkit-移动端
+@mixin animation($params...) {
+    -webkit-animation: $params;
+    -moz-animation: $params;
+    animation: $params;
+}
+
+
+//闪烁
+@mixin kfshanshuo {
+    @include keyframes(kfshanshuo) {
+        0% {
+            opacity: 1;
+        }
+        50% {
+            opacity: 0;
+        }
+        100% {
+            opacity: 1;
+        }
+    }
+}
+
+//呼吸
+@mixin kfpulse {
+    @include keyframes(kfpulse) {
+        0%,
+        10% {
+            @include transform(scale3d(1, 1, 1));
+            opacity: 1;
+        }
+        50% {
+            @include transform(scale3d(1.1, 1.1, 1.1));
+            opacity: 1;
+        }
+        100% {
+            @include transform(scale3d(1, 1, 1));
+            opacity: 1;
+        }
+    }
+}
+
+//晃动
+@mixin kfshake {
+    @include keyframes(kfshake) {
+        0% {
+            opacity: 1;
+            @include transform(scale3d(1, 1, 1));
+        }
+        8%,
+        16%,
+        32%,
+        48%,
+        64% {
+            opacity: 1;
+            @include transform(scale3d(1, 1, 1) rotate3d(0, 0, 1, -3deg));
+        }
+        24%,
+        40%,
+        56%,
+        72% {
+            opacity: 1;
+            @include transform(scale3d(1, 1, 1) rotate3d(0, 0, 1, 3deg));
+        }
+        80%,
+        100% {
+            @include transform(none);
+            opacity: 1;
+        }
+    }
+}
+
+//漂落
+@mixin kfpiaoluo {
+    @include keyframes(kfpiaoluo) {
+        0% {
+            opacity: 1;
+            @include transform(scale3d(1, 1, 1) rotate3d(0, 0, 1, -3deg) translateY(0%));
+        }
+        20% {
+            opacity: 1;
+            @include transform(scale3d(1, 1, 1) rotate3d(0, 0, 1, 3deg) translateY(150px));
+        }
+        40% {
+            opacity: 1;
+            @include transform(scale3d(1, 1, 1) rotate3d(0, 0, 1, -3deg) translateY(300px));
+        }
+        60% {
+            opacity: 1;
+            @include transform(scale3d(1, 1, 1) rotate3d(0, 0, 1, 3deg) translateY(450px));
+        }
+        80% {
+            opacity: 1;
+            @include transform(scale3d(1, 1, 1) rotate3d(0, 0, 1, -3deg) translateY(600px));
+        }
+        100% {
+            opacity: 1;
+            @include transform(scale3d(1, 1, 1) rotate3d(0, 0, 1, 3deg) translateY(750px));
+        }
+    }
+}
+
+//旋转漂落
+@mixin kfpiaoluo {
+    @include keyframes(kfpiaoluo) {
+        0% {
+            opacity: 1;
+            @include transform(scale3d(1, 1, 1) rotate3d(0, 0, 1, 0deg) translateY(0%));
+        }
+        20% {
+            opacity: 1;
+            @include transform(scale3d(1, 1, 1) rotate3d(0, 0, 1, 180deg) translateY(150px));
+        }
+        40% {
+            opacity: 1;
+            @include transform(scale3d(1, 1, 1) rotate3d(0, 0, 1, 360deg) translateY(300px));
+        }
+        60% {
+            opacity: 1;
+            @include transform(scale3d(1, 1, 1) rotate3d(0, 0, 1, 540deg) translateY(450px));
+        }
+        80% {
+            opacity: 1;
+            @include transform(scale3d(1, 1, 1) rotate3d(0, 0, 1, 720deg) translateY(600px));
+        }
+        100% {
+            opacity: 1;
+            @include transform(scale3d(1, 1, 1) rotate3d(0, 0, 1, 900deg) translateY(750px));
+        }
+    }
+}
+
+//渐显
+@mixin kffadein {
+    @include keyframes(kffadein) {
+        0% {
+            opacity: 0;
+        }
+        100% {
+            opacity: 1;
+        }
+    }
+}
+
+//渐隐
+@mixin kffadeout {
+    @include keyframes(kffadeout) {
+        0% {
+            opacity: 1;
+        }
+        100% {
+            opacity: 0;
+        }
+    }
+}
+
+//小出
+@mixin kfxiaoout {
+    @include keyframes(kfxiaoout) {
+        0% {
+            @include transform(scale3d(1, 1, 1));
+            opacity: 1;
+        }
+        50% {
+            opacity: 0.8;
+        }
+        100% {
+            @include transform(scale3d(0, 0, 0));
+            opacity: 0;
+        }
+    }
+}
+
+//小入
+@mixin kfxiaoin {
+    @include keyframes(kfxiaoin) {
+        0% {
+            @include transform(scale3d(0, 0, 0));
+            opacity: 0.5;
+        }
+        100% {
+            @include transform(scale3d(1, 1, 1));
+            opacity: 1;
+        }
+    }
+}
+
+//大出
+@mixin kfbigout {
+    @include keyframes(kfbigout) {
+        0% {
+            @include transform(scale3d(1, 1, 1));
+            opacity: 1;
+        }
+        50% {
+            opacity: 1;
+        }
+        100% {
+            @include transform(scale3d(2, 2, 2));
+            opacity: 0;
+        }
+    }
+}
+
+//大入
+@mixin kfbigin {
+    @include keyframes(kfbigin) {
+        0% {
+            @include transform(scale3d(2, 2, 2));
+            opacity: 0.8;
+        }
+        100% {
+            @include transform(scale3d(1, 1, 1));
+            opacity: 1;
+        }
+    }
+}
+
+//下入
+@mixin kfdownin {
+    @include keyframes(kfdownin) {
+        0% {
+            @include transform(translate(0, 100%));
+            opacity: 0.8;
+        }
+        100% {
+            @include transform(translate(0, 0));
+            opacity: 1;
+        }
+    }
+}
+
+//下出
+@mixin kfdownout {
+    @include keyframes(kfdownout) {
+        0% {
+            @include transform(translate(0, 0));
+            opacity: 1;
+        }
+        100% {
+            @include transform(translate(0, 100%));
+            opacity: 0.5;
+        }
+    }
+}
+
+//上入
+@mixin kfupin {
+    @include keyframes(kfupin) {
+        0% {
+            @include transform(translate(0, -100%));
+            opacity: 0.8;
+        }
+        100% {
+            @include transform(translate(0, 0));
+            opacity: 1;
+        }
+    }
+}
+
+//上出
+@mixin kfupout {
+    @include keyframes(kfupout) {
+        0% {
+            @include transform(translate(0, 0));
+            opacity: 1;
+        }
+        100% {
+            @include transform(translate(0, -100%));
+            opacity: 0.5;
+        }
+    }
+}
+
+//左入
+@mixin kfleftin {
+    @include keyframes(kfleftin) {
+        0% {
+            @include transform(translate(-100%, 0));
+            opacity: 0.8;
+        }
+        100% {
+            @include transform(translate(0, 0));
+            opacity: 1;
+        }
+    }
+}
+//左擦入
+@mixin kfleftbrushin {
+    @include keyframes(kfleftbrushin) {
+        0% {
+            background-size: auto 100%;
+            background-repeat:no-repeat;
+            background-position: left top;
+            width:0;
+            opacity: 1;
+        }
+        100% {
+            background-size: auto 100%;
+            background-repeat:no-repeat;
+            background-position: left top;
+            width:100%;
+            opacity: 1;
+        }
+    }
+}
+//左出
+@mixin kfleftout {
+    @include keyframes(kfleftout) {
+        0% {
+            @include transform(translate(0, 0));
+            opacity: 1;
+        }
+        100% {
+            @include transform(translate(-100%, 0));
+            opacity: 0.5;
+        }
+    }
+}
+
+//右入
+@mixin kfrightin {
+    @include keyframes(kfrightin) {
+        0% {
+            @include transform(translate(100%, 0));
+            opacity: 0.8;
+        }
+        100% {
+            @include transform(translate(0, 0));
+            opacity: 1;
+        }
+    }
+}
+
+//右出
+@mixin kfrightout {
+    @include keyframes(kfrightout) {
+        0% {
+            @include transform(translate(0, 0));
+            opacity: 1;
+        }
+        100% {
+            @include transform(translate(100%, 0));
+            opacity: 0.5;
+        }
+    }
+}
+
+//从下方10%渐显
+@mixin kfdownfadein {
+    @include keyframes(kfdownfadein) {
+        0% {
+            @include transform(translate(0, 10%));
+            opacity: 0.5;
+        }
+        100% {
+            @include transform(translate(0, 0));
+            opacity: 1;
+        }
+    }
+}
+
+//从上方10%渐显
+@mixin kfupfadein {
+    @include keyframes(kfupfadein) {
+        0% {
+            @include transform(translate(0, -10%));
+            opacity: 0.5;
+        }
+        100% {
+            @include transform(translate(0, 0));
+            opacity: 1;
+        }
+    }
+}
+
+//左侧旋入
+@mixin kfleftrollin {
+    @include keyframes(kfleftrollin) {
+        0% {
+            @include transform(translate3d(-80%, 90%, 0) rotate3d(0, 0, 1, -300deg));
+            opacity: 0.5;
+        }
+        100% {
+            @include transform(none);
+            opacity: 1;
+        }
+    }
+}
+
+//弹性小入
+@mixin kfstrongxiaoin {
+    @include keyframes(kfstrongxiaoin) {
+        0% {
+            @include transform(scale3d(0.1, 0.1, 0.1));
+            opacity: 1;
+        }
+        50% {
+            @include transform(scale3d(1.2, 1.2, 1.2));
+            opacity: 1;
+        }
+        75% {
+            @include transform(scale3d(0.7, 0.7, 0.7));
+            opacity: 1;
+        }
+        85% {
+            @include transform(scale3d(1.1, 1.1, 1.1));
+            opacity: 1;
+        }
+        92% {
+            @include transform(scale3d(0.9, 0.9, 0.9));
+            opacity: 1;
+        }
+        100% {
+            @include transform(scale3d(1,1,1));
+            opacity: 1;
+        }
+    }
+}
+//横向屏开
+@mixin kfxopen {
+    @include keyframes(kfxopen) {
+        0% {
+            @include transform(scale3d(0.1,1,1));
+            opacity: 1;
+        }
+        100% {
+            @include transform(scale3d(1,1,1));
+            opacity: 1;
+        }
+    }
+}
+//纵向屏开
+@mixin kfyopen {
+    @include keyframes(kfyopen) {
+        0% {
+            @include transform(scale3d(1,0.1,1));
+            opacity: 1;
+        }
+        100% {
+            @include transform(scale3d(1,1,1));
+            opacity: 1;
+        }
+    }
+}
+//旋转
+@mixin kfrotate($in,$out) {
+    @include keyframes(kfrotate_#{$in}_#{$out}) {
+        0% {
+            @include transform(rotate(#{$in}deg) );
+            opacity: 1;
+        }
+        100% {
+            @include transform(rotate(#{$out}deg) );
+            opacity: 1;
+        }
+    }
+}
+
+//起立
+@mixin kfrotate3d($x,$y,$z,$in,$out) {
+    @include keyframes(kfrotate3d_#{$x}_#{$y}_#{$z}_#{$in}_#{$out}) {
+        0% {
+            @include transform(rotate3d($x,$y,$z,#{$in}deg));
+            opacity: 1;
+        }
+        100% {
+            @include transform(rotate3d($x,$y,$z,#{$out}deg));
+            opacity: 1;
+        }
+    }
+}
+//弹性旋入
+@mixin kfrotateElastic($in,$out) {
+    @include keyframes(kfrotateElastic_#{$in}_#{$out}) {
+        0% {
+            @include transform(rotate(#{$in}deg) );
+            opacity: 1;
+        }
+        60% {
+            @include transform(rotate(#{$out + 12}deg) );
+            opacity: 1;
+        }
+        70% {
+            @include transform(rotate(#{$out - 9}deg) );
+            opacity: 1;
+        }
+        80% {
+            @include transform(rotate(#{$out + 6}deg) );
+            opacity: 1;
+        }
+        90% {
+            @include transform(rotate(#{$out - 3}deg) );
+            opacity: 1;
+        }
+        100% {
+            @include transform(rotate(#{$out}deg) );
+            opacity: 1;
+        }
+    }
+}
+
+//X方变换
+@mixin kftranslateX($in,$out) {
+    @include keyframes(kftranslateX_#{$in}_#{$out}) {
+        0% {
+            @include transform(translate(#{$in + "%"}, 0));
+            opacity: 1;
+        }
+        100% {
+            @include transform(translate(#{$out + "%"}, 0));
+            opacity: 1;
+        }
+    }
+}
+
+//上下漂动
+@mixin kfupdown {
+    @include keyframes(kfupdown) {
+        0% {
+            @include transform(translate(0, 0));
+            opacity: 1;
+        }
+        25% {
+            @include transform(translate(0, -5%));
+            opacity: 1;
+        }
+        50% {
+            @include transform(translate(0, 0));
+            opacity: 1;
+        }
+        75% {
+            @include transform(translate(0, 5%));
+            opacity: 1;
+        }
+        100% {
+            @include transform(translate(0, 0));
+            opacity: 1;
+        }
+    }
+}
+
+//上下漂动
+@mixin kfupdown($range) {
+    @include keyframes(kfupdown_#{$range}) {
+        0% {
+            @include transform(translate(0, 0));
+            opacity: 1;
+        }
+        25% {
+            @include transform(translate(0, #{'-'+$range+'%'}));
+            opacity: 1;
+        }
+        50% {
+            @include transform(translate(0, 0));
+            opacity: 1;
+        }
+        75% {
+            @include transform(translate(0, #{$range+'%'}));
+            opacity: 1;
+        }
+        100% {
+            @include transform(translate(0, 0));
+            opacity: 1;
+        }
+    }
+}
+
+//左下进
+@mixin kflbin {
+    @include keyframes(kflbin) {
+        0% {
+            @include transform(translate(-100%, 100%));
+            opacity: 1;
+        }
+        100% {
+            @include transform(translate(0, 0));
+            opacity: 1;
+        }
+    }
+}

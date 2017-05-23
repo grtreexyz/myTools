@@ -4,24 +4,8 @@ var gulp = require('gulp');
 var sass = require('gulp-sass');
 var uglify = require('gulp-uglify');
 var rename = require("gulp-rename");
-//var _msbuild = require('msbuild');
-var argv = require('yargs').argv;
 var clean = require('gulp-clean');
 var sourcemaps = require('gulp-sourcemaps');
-
-//说明
-gulp.task('help', function () {
-    console.log('gulp sass                   编译sass');
-    console.log('gulp minifyjs               压缩js');
-    console.log('gulp watch                  监视sass和js');
-    console.log('gulp build                  编译sass和js');
-    console.log('gulp help                   gulp参数说明');
-});
-
-//默认
-gulp.task('default', function () {
-    gulp.start('help');
-});
 
 //编译sass
 gulp.task('sass', function () {
@@ -59,12 +43,6 @@ gulp.task('watch', function () {
         console.log('File ' + event.path + ' was ' + event.type + ', running task minifyjs');
     });
 });
-
-//清理
-// gulp.task("clean", function () {
-//     return gulp.src(['./dist/style/', './dist/script/', './dist/map/'])      //需要操作的文件
-//         .pipe(clean());
-// });
 
 //生成项目
 gulp.task("build", function () {
