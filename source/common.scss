@@ -12,7 +12,6 @@ body{
     width:100%;
 }
 
-
 body,
 h1,
 h2,
@@ -74,38 +73,24 @@ textarea {
     /* 使得表单元素在 ie 下能继承字体大小 */
 }
 
-section,
-p,
-div,
-ul,
-li,
-dl,
-dt,
-dd,
-span {
-    box-sizing:border-box;
-}
-
-span {
-    display: inline-block;
-    text-align: center;
-}
-
 i {
     font-style: normal;
 }
-
-// hr {
-//     height: 0;
-//     border: 0;
-//     width: 100%;
-//     border-bottom: 1px solid #eee;
-// }
 
 button[disabled] {
     opacity: .5;
     cursor: not-allowed
 }
+
+.bb{
+    box-sizing:border-box;
+}
+
+.ib {
+    display: inline-block;
+    text-align: center;
+}
+
 
 .f_l {
     float: left;
