@@ -90,9 +90,21 @@ function cutString(pStr, pLen) {
  *          false:半角 
  */
 function isFull(pChar) {
-    if ((pChar.charCodeAt(0) > 128)) {
+    if ((pChar.charCodeAt(0) > 127)) {
         return true;
     } else {
         return false;
     }
+}
+
+function trueLength(pStr){
+    var _lenCount=0;
+    for (var i = 0; i < pStr.length ; i++) {
+            if (isFull(pStr.charAt(i))) {
+                _lenCount += 2;
+            } else {
+                _lenCount += 1;
+            }
+        }
+    return _lenCount;
 }
