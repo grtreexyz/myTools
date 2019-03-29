@@ -24,7 +24,7 @@ _cookie = {
         }
         return r;
     }
-    delete: function(key) { //删除cookie方法
+    del: function(key) { //删除cookie方法
         var date = new Date(); //获取当前时间
         date.setTime(date.getTime() - 10000); //将date设置为过去的时间
         document.cookie = key + "=v; expires =" + date.toGMTString(); //设置cookie
